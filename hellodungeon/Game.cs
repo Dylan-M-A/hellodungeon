@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -89,7 +90,7 @@ namespace HelloDungeon
                         int v1 = GetInput("You have two choices one to go left and one to go right. Choose.", "Right", "Left");
                         if (v1 == 1)
                         {
-                            
+                            input = GetChoice("Right");
                         }
                     }
                     else if (input == 2)
@@ -162,6 +163,37 @@ namespace HelloDungeon
                 else
                 {
                     Console.WriteLine("Nope, got it wrong.");
+                    Console.ReadKey();
+                }
+            }
+
+            Console.Clear();
+            return inputRecieved;
+        }
+        int GetChoice(string option1, string option2)
+        {
+            string input = "";
+            int inputRecieved = 0;
+
+            while (inputRecieved != 1)
+            {
+                Console.WriteLine("1. " + option1);
+                Console.WriteLine("2. " + option2);
+                Console.WriteLine("> ");
+
+                input = Console.ReadLine();
+
+                if (input == "1" || input == option1)
+                {
+                    inputRecieved = 1;
+                }
+                else if (input == "2" || input == option2)
+                {
+                    inputRecieved = 2;
+                }
+                else
+                {
+                    Console.WriteLine("Put the right numbers and no letters.");
                     Console.ReadKey();
                 }
             }
