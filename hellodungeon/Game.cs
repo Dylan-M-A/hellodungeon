@@ -78,16 +78,21 @@ namespace HelloDungeon
                     Console.WriteLine("Great, you've made it to the next set of puzzles.");
                     Console.WriteLine("You're next puzzle will be a riddle.");
                     Console.WriteLine();
-                    int v1 = GetInput("Man walks over, man walks under, in times of war he burns asunder", "Bridge", "Building");
-                    if (v1 == 1)
+                    input = GetInput("Man walks over, man walks under, in times of war he burns asunder", "Bridge");
+                    if (input == 1)
                     {
                         Console.WriteLine();
                         Console.WriteLine("Correct, you are smarter than I thought.");
                         Console.WriteLine("Now onto the next challenge.");
                         Console.WriteLine();
-
+                        Console.WriteLine("Your next puzzle will put you through a loop because its a maze.");
+                        int v1 = GetInput("You have two choices one to go left and one to go right. Choose.", "Right", "Left");
+                        if (v1 == 1)
+                        {
+                            
+                        }
                     }
-                    else if (v1 == 2)
+                    else if (input == 2)
                     {
                         Console.WriteLine("Haha, you got it wrong.");
                     }
@@ -130,6 +135,33 @@ namespace HelloDungeon
                 {
                     // Display error message
                     Console.WriteLine("Invalid Input");
+                    Console.ReadKey();
+                }
+            }
+
+            Console.Clear();
+            return inputRecieved;
+        }
+        int GetInput(string description, string option1)
+        {
+            string input = "";
+            int inputRecieved = 0;
+
+            while (inputRecieved != 1)
+            {
+                // Able to type answer now
+                Console.WriteLine(description);
+                Console.Write("> ");
+
+                input = Console.ReadLine();
+
+                if (input == "Bridge" || input == option1)
+                {
+                    inputRecieved = 1;
+                }
+                else
+                {
+                    Console.WriteLine("Nope, got it wrong.");
                     Console.ReadKey();
                 }
             }
