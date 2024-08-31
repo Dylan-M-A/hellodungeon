@@ -90,7 +90,11 @@ namespace HelloDungeon
                         int v1 = GetInput("You have two choices one to go left and one to go right. Choose.", "Right", "Left");
                         if (v1 == 1)
                         {
-                            input = GetChoice("Right");
+                            input = GetChoice("Right", "Left");
+                            if (input == 1)
+                            {
+
+                            }
                         }
                     }
                     else if (input == 2)
