@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Intrinsics;
 using System.Text;
@@ -22,7 +23,9 @@ namespace HelloDungeon
             public string race;
             public string weapon;
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
             public Player(
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
                 string name,
                 string role,
                 string race,
@@ -48,27 +51,33 @@ namespace HelloDungeon
         }
         public void Run()
         {
-            Player player = new Player(name: "", role: "", race: "", weapon: "", 10, 10, 5f, 3, 10, 7);
+            //declaring Player mainCharacter and the stats
+            Player mainCharacter = new Player(name: "", role: "", race: "", weapon: "", 10, 10, 5f, 3, 10, 7);
             Console.WriteLine("Hello, your name please");
-            player.name = Console.ReadLine();
+#pragma warning disable CS8601 // Possible null reference assignment.
+            mainCharacter.name = Console.ReadLine();
+#pragma warning restore CS8601 // Possible null reference assignment.
 
             Console.WriteLine();
-            Console.WriteLine("Hello " + player.name + ". Welcome to my dungeon!");
+            Console.WriteLine("Hello " + mainCharacter.name + ". Welcome to my dungeon!");
             Console.WriteLine();
             Console.WriteLine("What is your race?");
-            player.race = Console.ReadLine();
+#pragma warning disable CS8601 // Possible null reference assignment.
+            mainCharacter.race = Console.ReadLine();
+#pragma warning restore CS8601 // Possible null reference assignment.
 
             Console.WriteLine();
-            Console.WriteLine("So you are a " + player.race);
-            Console.WriteLine("Health: " + player.health);
-            Console.WriteLine("Stamina: " + player.stamina);
-            Console.WriteLine("Mana: " + player.mana);
+            Console.WriteLine("So you are a " + mainCharacter.race);
+            Console.WriteLine("Health: " + mainCharacter.health);
+            Console.WriteLine("Stamina: " + mainCharacter.stamina);
+            Console.WriteLine("Mana: " + mainCharacter.mana);
             Console.WriteLine();
             int input = GetInput("Are you a brawler or a specialist?", "Brawler", "Specialist");
             if (input == 1)
             {
-                player.role = "Brawler";
-                Console.WriteLine("Player role: " + player.role);
+                //creating brawler role and giving it stats
+                mainCharacter.role = "Brawler";
+                Console.WriteLine("Player role: " + mainCharacter.role);
                 Console.WriteLine("Stats: ");
                 Console.WriteLine("Strength: 5");
                 Console.WriteLine("Speed: 2");
@@ -79,8 +88,9 @@ namespace HelloDungeon
             }
             else if (input == 2)
             {
-                player.role = "Specialist";
-                Console.WriteLine("Player role: " + player.role);
+                //creating specialist and giving it stats
+                mainCharacter.role = "Specialist";
+                Console.WriteLine("Player role: " + mainCharacter.role);
                 Console.WriteLine("Stats: ");
                 Console.WriteLine("Strength: 3");
                 Console.WriteLine("Speed: 4");
@@ -89,12 +99,20 @@ namespace HelloDungeon
                 Console.WriteLine("Intelligence: 4");
                 Console.WriteLine();
             }
+            //showing bag and its items
             Console.WriteLine();
             Console.WriteLine("Bag: ");
-            Console.WriteLine("Gold: " + player.gold);
-            Console.WriteLine("Silver: " + player.silver);
-            Console.WriteLine("Bronze: " + player.bronze);
-            Console.WriteLine("Weapon: " + player.weapon);
+            Console.WriteLine("Gold: " + mainCharacter.gold);
+            Console.WriteLine("Silver: " + mainCharacter.silver);
+            Console.WriteLine("Bronze: " + mainCharacter.bronze);
+
+            //mainCharacter says name of weapon
+            Console.WriteLine();
+            Console.WriteLine("So what is your weapon you carry.");
+#pragma warning disable CS8601 // Possible null reference assignment.
+            mainCharacter.weapon = Console.ReadLine();
+#pragma warning restore CS8601 // Possible null reference assignment.
+            Console.WriteLine("Weapon: " + mainCharacter.weapon);
             Console.WriteLine();
             {
                 int v = GetInput("You have to choose out of two doors which one to go through.", "Left Door", "Right Door");
@@ -117,35 +135,6 @@ namespace HelloDungeon
                         Console.WriteLine("Now onto the next challenge.");
                         Console.WriteLine();
                         Console.WriteLine("Your next puzzle will put you through a loop because its a maze.");
-                        int v1 = GetInput("You have two choices one to go left and one to go right. Choose.", "Right", "Left");
-                        if (v1 == 1)
-                        {
-                            input = GetChoice("Straight", "Left");
-                            if (input == 1)
-                            {
-                                Console.WriteLine("Oh no, its a dead end.");
-                            }
-                            else if (input == 2)
-                            {
-                                v = GetChoice("Straight", "Left");
-                                if (v == 1)
-                                {
-                                    input = GetChoice("Left", "Right");
-                                    if (input == 1)
-                                    {
-                                        input = GetChoice("Right", "Left");
-                                        if (input == 1)
-                                        {
-                                            input = GetChoice("Straight", "Left");
-                                            if (input == 1)
-                                            {
-
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
 
@@ -166,7 +155,9 @@ namespace HelloDungeon
                 Console.Write("> ");
 
                 // Get input from player
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                 input = Console.ReadLine();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
                 // If player selected the first option
                 if (input == "1" || input == option1)
@@ -203,7 +194,9 @@ namespace HelloDungeon
                 Console.WriteLine(description);
                 Console.Write("> ");
 
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                 input = Console.ReadLine();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
                 if (input == "Bridge" || input == option1)
                 {
@@ -230,7 +223,9 @@ namespace HelloDungeon
                 Console.WriteLine("2. " + option2);
                 Console.WriteLine("> ");
 
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                 input = Console.ReadLine();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
                 if (input == "1" || input == option1)
                 {
@@ -249,6 +244,84 @@ namespace HelloDungeon
 
             Console.Clear();
             return inputRecieved;
+        }
+
+        private const char wallchar = '\u2588';
+        private const char mazechar = '\u0020';
+
+        static private bool[][] mazeLayout =
+        {
+        new[] {true, true, true, true, true, true, true, true},
+        new[] {true, true, true, true, true, true, true, true},
+        new[] {true, false, false, false, false, false, false, true},
+        new[] {true, false, true, true, true, true, false, true},
+        new[] {true, false, true, false, false, false, false, true},
+        new[] {true, false, true, false, true, true, true, true},
+        new[] {true, false, true, false, false, false, false, true},
+        new[] {true, false, true, true, true, true, false, true},
+        new[] {true, false, false, false, false, false, false, true},
+        new[] {true, true, true, true, true, true, true, true}
+    };
+
+        static void Main(string[] args)
+        {
+            Console.SetWindowSize(10, 10);
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+
+            Console.WriteLine("");
+
+            //Make maze
+            for (int i = 0; i < mazeLayout.Length; i++)
+            {
+                for (int j = 0; j < mazeLayout[i].Length; j++)
+                {
+                    Console.Write(mazeLayout[i][j] ? wallchar : mazechar);
+                }
+                Console.Write("\n");
+            }
+
+            Console.WriteLine("");
+            int col = 3;
+            int row = 6;
+
+            Console.SetCursorPosition(col, row);
+            Console.Write("*");
+            Console.SetCursorPosition(col, row);
+            while (true)
+            {
+                ConsoleKeyInfo info = Console.ReadKey(true);
+                if (info.Key == ConsoleKey.W && !mazeLayout[row - 2][col])
+                {
+                    Console.Write(" ");
+                    Debug.Print("W");
+                    row--;
+                }
+                if (info.Key == ConsoleKey.Z && !mazeLayout[row][col])
+                {
+                    Console.Write(" ");
+                    Debug.Print("Z");
+                    row++;
+                }
+
+                if (info.Key == ConsoleKey.A && !mazeLayout[row - 1][col - 1])
+                {
+                    Console.Write(" ");
+                    Debug.Print("A");
+                    col--;
+                }
+
+                if (info.Key == ConsoleKey.S && !mazeLayout[row - 1][col + 1])
+                {
+                    Console.Write(" ");
+                    Debug.Print("S");
+                    col++;
+                }
+
+                Console.SetCursorPosition(col, row);
+                Console.Write("*");
+                Console.SetCursorPosition(col, row);
+            }
         }
     }
 }
