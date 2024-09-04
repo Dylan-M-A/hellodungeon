@@ -18,72 +18,57 @@ namespace HelloDungeon
             public int silver;
             public int bronze;
             public string name;
+            public string role;
+            public string race;
+            public string weapon;
 
             public Player(
+                string name,
+                string role,
+                string race,
+                string weapon,
                 float health,
                 float stamina,
                 float mana,
                 int gold,
                 int silver,
-                int bronze,
-                string name)
+                int bronze)
             {
+                this.name = name;
+                this.name = race;
+                this.weapon = weapon;
+                this.name = role;
                 this.health = health;
                 this.stamina = stamina;
                 this.mana = mana;
                 this.gold = gold;
                 this.silver = silver;
                 this.bronze = bronze;
-                this.name = name;
             }
-        }
-        static void Main(string[] args)
-        {
-            // type name = value
-            Player player = new Player(10, 10, 5f, 3, 10, 7, "warrior");
-
-            PrintPlayerStats(player);
-            Console.WriteLine("-------------");
-        }
-        static void PrintPlayerStats(Player player)
-        {
-            Console.WriteLine(player.name + " Health:  " + player.health);
-            Console.WriteLine(player.name + " Stamina:  " + player.stamina);
-            Console.WriteLine(player.name + " Mana:  " + player.mana);
-            Console.WriteLine(player.name + " Gold:  " + player.gold);
-            Console.WriteLine(player.name + " Silver:  " + player.silver);
-            Console.WriteLine(player.name + " Bronze:  " + player.bronze);
         }
         public void Run()
         {
-            float playerHealth = 10.0f;
-            float playerStamina = 10.0f;
-            float playerMana = 5.0f;
-            int playerGold = 3;
-            int playerSilver = 10;
-            int playerBronze = 7;
-            string playerRole = "Warrior";
-
+            Player player = new Player(name: "", role: "", race: "", weapon: "", 10, 10, 5f, 3, 10, 7);
             Console.WriteLine("Hello, your name please");
-            string? playerName = Console.ReadLine();
+            player.name = Console.ReadLine();
 
             Console.WriteLine();
-            Console.WriteLine("Hello " + playerName + ". Welcome to my dungeon!");
+            Console.WriteLine("Hello " + player.name + ". Welcome to my dungeon!");
             Console.WriteLine();
             Console.WriteLine("What is your race?");
-            string? playerRace = Console.ReadLine();
+            player.race = Console.ReadLine();
 
             Console.WriteLine();
-            Console.WriteLine("So you are a " + playerRace);
-            Console.WriteLine("Health: " + playerHealth);
-            Console.WriteLine("Stamina: " + playerStamina);
-            Console.WriteLine("Mana: " + playerMana);
+            Console.WriteLine("So you are a " + player.race);
+            Console.WriteLine("Health: " + player.health);
+            Console.WriteLine("Stamina: " + player.stamina);
+            Console.WriteLine("Mana: " + player.mana);
             Console.WriteLine();
             int input = GetInput("Are you a brawler or a specialist?", "Brawler", "Specialist");
             if (input == 1)
             {
-                playerRole = "Brawler";
-                Console.WriteLine("Player role: " + playerRole);
+                player.role = "Brawler";
+                Console.WriteLine("Player role: " + player.role);
                 Console.WriteLine("Stats: ");
                 Console.WriteLine("Strength: 5");
                 Console.WriteLine("Speed: 2");
@@ -94,8 +79,8 @@ namespace HelloDungeon
             }
             else if (input == 2)
             {
-                playerRole = "Specialist";
-                Console.WriteLine("Player role: " + playerRole);
+                player.role = "Specialist";
+                Console.WriteLine("Player role: " + player.role);
                 Console.WriteLine("Stats: ");
                 Console.WriteLine("Strength: 3");
                 Console.WriteLine("Speed: 4");
@@ -106,10 +91,10 @@ namespace HelloDungeon
             }
             Console.WriteLine();
             Console.WriteLine("Bag: ");
-            Console.WriteLine("Gold: " + playerGold);
-            Console.WriteLine("Silver: " + playerSilver);
-            Console.WriteLine("Bronze: " + playerBronze);
-            Console.WriteLine("Dagger");
+            Console.WriteLine("Gold: " + player.gold);
+            Console.WriteLine("Silver: " + player.silver);
+            Console.WriteLine("Bronze: " + player.bronze);
+            Console.WriteLine("Weapon: " + player.weapon);
             Console.WriteLine();
             {
                 int v = GetInput("You have to choose out of two doors which one to go through.", "Left Door", "Right Door");
@@ -142,8 +127,8 @@ namespace HelloDungeon
                             }
                             else if (input == 2)
                             {
-                                input = GetChoice("Straight", "Left");
-                                if (input == 1)
+                                v = GetChoice("Straight", "Left");
+                                if (v == 1)
                                 {
                                     input = GetChoice("Left", "Right");
                                     if (input == 1)
@@ -162,20 +147,10 @@ namespace HelloDungeon
                             }
                         }
                     }
-                    else if (input == 2)
-                    {
-                        Console.WriteLine("Haha, you got it wrong.");
-                    }
                 }
 
             }
         }
-
-        private int GetChoice(string v)
-        {
-            throw new NotImplementedException();
-        }
-
         static int GetInput(string description, string option1, string option2)
         {
             string input = "";
