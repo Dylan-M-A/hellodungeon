@@ -67,12 +67,12 @@ namespace HelloDungeon
             Console.WriteLine("Dagger");
             Console.WriteLine();
             {
-                int v = GetInput("You have to choose out of two doors which one to go through.", "Left Door", "Right Door");
-                if (v == 1)
+                input = GetInput("You have to choose out of two doors which one to go through.", "Left Door", "Right Door");
+                if (input == 1)
                 {
                     Console.WriteLine("Good Job You Died.");
                 }
-                else if (v == 2)
+                else if (input == 2)
                 {
                     Console.WriteLine("You enter the right door.");
                     Console.WriteLine();
@@ -87,13 +87,33 @@ namespace HelloDungeon
                         Console.WriteLine("Now onto the next challenge.");
                         Console.WriteLine();
                         Console.WriteLine("Your next puzzle will put you through a loop because its a maze.");
-                        int v1 = GetInput("You have two choices one to go left and one to go right. Choose.", "Right", "Left");
-                        if (v1 == 1)
+                        int v = GetInput("You have two choices one to go left and one to go right. Choose.", "Right", "Left");
+                        if (v == 1)
                         {
-                            input = GetChoice("Right", "Left");
+                            input = GetChoice("Straight", "Left");
                             if (input == 1)
                             {
+                                Console.WriteLine("Oh no, its a dead end.");
+                            }
+                            else if (input == 2)
+                            {
+                                input = GetChoice("Straight", "Left");
+                                if (input == 1)
+                                {
+                                    input = GetChoice("Left", "Right");
+                                    if (input == 1)
+                                    {
+                                        input = GetChoice("Right", "Left");
+                                        if (input == 1)
+                                        {
+                                            input = GetChoice("Straight", "Left");
+                                            if (input == 1)
+                                            {
 
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -105,8 +125,7 @@ namespace HelloDungeon
 
             }
         }
-
-        int GetInput(string description, string option1, string option2)
+        static int GetInput(string description, string option1, string option2)
         {
             string input = "";
             int inputRecieved = 0;
@@ -147,7 +166,7 @@ namespace HelloDungeon
             Console.Clear();
             return inputRecieved;
         }
-        int GetInput(string description, string option1)
+        static int GetInput(string description, string option1)
         {
             string input = "";
             int inputRecieved = 0;
@@ -174,7 +193,7 @@ namespace HelloDungeon
             Console.Clear();
             return inputRecieved;
         }
-        int GetChoice(string option1, string option2)
+        static int GetChoice(string option1, string option2)
         {
             string input = "";
             int inputRecieved = 0;
