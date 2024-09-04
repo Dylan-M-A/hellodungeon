@@ -9,6 +9,53 @@ namespace HelloDungeon
 {
     internal class Game
     {
+        struct Player
+        {
+            public float health;
+            public float stamina;
+            public float mana;
+            public int gold;
+            public int silver;
+            public int bronze;
+            public string name;
+
+            public Player(
+                float health,
+                float stamina,
+                float mana,
+                int gold,
+                int silver,
+                int bronze,
+                string name)
+            {
+                this.health = health;
+                this.stamina = stamina;
+                this.mana = mana;
+                this.gold = gold;
+                this.silver = silver;
+                this.bronze = bronze;
+                this.name = name;
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            // type name = value
+            Player player = new Player(10, 10, 5f, 3, 10, 7, "warrior");
+
+            PrintPlayerStats(player);
+            Console.WriteLine("-------------");
+        }
+
+        static void PrintPlayerStats(Player player)
+        {
+            Console.WriteLine(player.name + " Health:  " + player.health);
+            Console.WriteLine(player.name + " Stamina:  " + player.stamina);
+            Console.WriteLine(player.name + " Mana:  " + player.mana);
+            Console.WriteLine(player.name + " Gold:  " + player.gold);
+            Console.WriteLine(player.name + " Silver:  " + player.silver);
+            Console.WriteLine(player.name + " Bronze:  " + player.bronze);
+        }
         public void Run()
         {
             float playerHealth = 10.0f;
@@ -67,12 +114,12 @@ namespace HelloDungeon
             Console.WriteLine("Dagger");
             Console.WriteLine();
             {
-                input = GetInput("You have to choose out of two doors which one to go through.", "Left Door", "Right Door");
-                if (input == 1)
+                int v = GetInput("You have to choose out of two doors which one to go through.", "Left Door", "Right Door");
+                if (v == 1)
                 {
                     Console.WriteLine("Good Job You Died.");
                 }
-                else if (input == 2)
+                else if (v == 2)
                 {
                     Console.WriteLine("You enter the right door.");
                     Console.WriteLine();
@@ -87,8 +134,8 @@ namespace HelloDungeon
                         Console.WriteLine("Now onto the next challenge.");
                         Console.WriteLine();
                         Console.WriteLine("Your next puzzle will put you through a loop because its a maze.");
-                        int v = GetInput("You have two choices one to go left and one to go right. Choose.", "Right", "Left");
-                        if (v == 1)
+                        int v1 = GetInput("You have two choices one to go left and one to go right. Choose.", "Right", "Left");
+                        if (v1 == 1)
                         {
                             input = GetChoice("Straight", "Left");
                             if (input == 1)
@@ -125,6 +172,12 @@ namespace HelloDungeon
 
             }
         }
+
+        private int GetChoice(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         static int GetInput(string description, string option1, string option2)
         {
             string input = "";
