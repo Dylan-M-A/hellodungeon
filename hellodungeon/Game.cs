@@ -37,7 +37,6 @@ namespace HelloDungeon
                 this.name = name;
             }
         }
-
         static void Main(string[] args)
         {
             // type name = value
@@ -46,7 +45,6 @@ namespace HelloDungeon
             PrintPlayerStats(player);
             Console.WriteLine("-------------");
         }
-
         static void PrintPlayerStats(Player player)
         {
             Console.WriteLine(player.name + " Health:  " + player.health);
