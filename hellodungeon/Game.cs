@@ -162,13 +162,14 @@ namespace HelloDungeon
         }
         void Room2()
         {
+            //giving number of attempts
             int numberOfAttempts = 5;
             string input = "";
 
             for (int i = 0; i < numberOfAttempts; i--)
             {
                 Console.Clear();
-
+                //riddle and its answer
                 Console.WriteLine("You're next puzzle will be a riddle.");
                 Console.WriteLine("You will have " + numberOfAttempts + " attempts.");
                 Console.WriteLine();
@@ -204,11 +205,12 @@ namespace HelloDungeon
         }
         void Room3()
         {
+            //fight the dungeon master
             Console.Clear();
             Console.WriteLine("Now of course because this is a dungeon you are going to have to fight.");
             Console.WriteLine("So you are goin to fight me. The Dungeon Master!");
             DungeonMaster boss = new DungeonMaster("Dungeon Master", 200, 100, 100f, 45, 20, 30);
-
+            //battle sequence
             while (mainCharacter.health > 0 && boss.health > 0)
             {
                 Console.WriteLine("_______________");
@@ -223,12 +225,13 @@ namespace HelloDungeon
             }
             Console.ReadKey();
         }
+        //end of the game
         void Room4()
         {
             Console.Clear();
             Console.WriteLine("You've beaten the Dungeon Master. Congratulaions.");
         }
-       
+       //main menu screen
         void DisplayMainMenu()
         {
             //displays if you'd like to play again
@@ -295,7 +298,7 @@ namespace HelloDungeon
         {
             string input = "";
             int inputRecieved = 0;
-
+            
             while (inputRecieved != 1)
             {
                 // Able to type answer now
@@ -353,7 +356,7 @@ namespace HelloDungeon
             Console.Clear();
             return inputRecieved;
         }
-
+        //the run for the game
         public void Run()
         {
             // Loop while game isn't over
@@ -389,6 +392,7 @@ namespace HelloDungeon
                 }
             }
         }
+        //all the fighting features
         float Fight( Player1 attacker, ref DungeonMaster defender)
         {
             float damageTaken = CalculateDamage(attacker.strength, defender.defense);
