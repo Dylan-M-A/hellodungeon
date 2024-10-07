@@ -91,6 +91,14 @@ namespace HelloDungeon
             }
         }
         Player1 mainCharacter = new Player1(name: "", role: "", race: "", weapon: "", 100, 100, 50f, 50, 25, 40, 3, 10, 7);
+        private enum Room
+        {
+            ROOM1,
+            ROOM2,
+            ROOM3,
+            ROOM4,
+            MAIN_MENU
+        }
         void Room1()
         {
             //declaring Player mainCharacter and the stats
@@ -363,23 +371,39 @@ namespace HelloDungeon
             while (gameOver == false)
             {
                 //Print the current room to the screen
-                if (currentArea == 1)
-                {
-                    Room1();
-                }
-                if (currentArea == 2)
-                {
-                    Room2();
-                }
-                if (currentArea == 3)
-                {
-                    Room3();
-                }
-                if (currentArea == 4)
-                {
-                    Room4();
-                }
+                //if (currentArea == 1)
+                //{
+                //    Room1();
+                //}
+                //if (currentArea == 2)
+                //{
+                //    Room2();
+                //}
+                //if (currentArea == 3)
+                //{
+                //    Room3();
+                //}
+                //if (currentArea == 4)
+                //{
+                //    Room4();
+                //}
+                Room room = Room.ROOM1;
 
+                switch (room)
+                {
+                    case Room.ROOM1:
+                        Room1();
+                        break;
+                    case Room.ROOM2:
+                        Room2();
+                    break;
+                    case Room.ROOM3:
+                        Room3();
+                        break;
+                    case Room.ROOM4:
+                        Room4();
+                        break;
+                }
                 //if the player lost or beat the game
                 if (playerIsAlive == false || currentArea == 4)
                 {
